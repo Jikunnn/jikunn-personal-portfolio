@@ -2,12 +2,13 @@
 
 import { cn } from "@/lib/utils";
 import { motion, stagger, useAnimate, useInView } from "motion/react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 
 export const TypewriterEffect = ({
   words,
   className,
   cursorClassName,
+  as = "div",
 }: {
   words: {
     text: string;
@@ -15,6 +16,7 @@ export const TypewriterEffect = ({
   }[];
   className?: string;
   cursorClassName?: string;
+  as?: React.ElementType;
 }) => {
   // split text inside of words into array of characters
   const wordsArray = words.map((word) => {
@@ -49,33 +51,33 @@ export const TypewriterEffect = ({
       <motion.div ref={scope} className="inline">
         {wordsArray.map((word, idx) => {
           return (
-            <div key={`word-${idx}`} className="inline-block">
-              {word.text.map((char, index) => (
-                <motion.span
-                  initial={{}}
-                  key={`char-${index}`}
-                  className={cn(
-                    `dark:text-white text-black opacity-0 hidden`,
-                    word.className
-                  )}
-                >
-                  {char}
-                </motion.span>
-              ))}
-              &nbsp;
-            </div>
+            <React.Fragment key={`word-${idx}`}>
+              <div className="inline-block">
+                {word.text.map((char, index) => (
+                  <motion.span
+                    initial={{}}
+                    key={`char-${index}`}
+                    className={cn(`opacity-0`, word.className)}
+                  >
+                    {char === " " ? "\u00A0" : char}
+                  </motion.span>
+                ))}
+              </div>
+              {/* regular inter-word space so inline-blocks don't collide */}{" "}
+            </React.Fragment>
           );
         })}
       </motion.div>
     );
   };
+
+  const Container = as;
   return (
-    <div
-      className={cn(
-        "text-base sm:text-xl md:text-3xl lg:text-5xl font-bold text-center",
-        className
-      )}
-    >
+    // allow caller to control sizing and color via className
+    // Container can be 'div' or 'span' depending on usage
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    <Container className={cn("inline", className)}>
       {renderWords()}
       <motion.span
         initial={{
@@ -94,7 +96,7 @@ export const TypewriterEffect = ({
           cursorClassName
         )}
       ></motion.span>
-    </div>
+    </Container>
   );
 };
 
@@ -130,8 +132,7 @@ export const TypewriterEffectSmooth = ({
                 >
                   {char}
                 </span>
-              ))}
-              &nbsp;
+              ))}{" "}
             </div>
           );
         })}
