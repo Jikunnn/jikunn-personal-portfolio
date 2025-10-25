@@ -39,6 +39,36 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Catppuccin Mocha Color Palette */
+  --color-ctp-rosewater: #f5e0dc;
+  --color-ctp-flamingo: #f2cdcd;
+  --color-ctp-pink: #f5c2e7;
+  --color-ctp-mauve: #cba6f7;
+  --color-ctp-red: #f38ba8;
+  --color-ctp-maroon: #eba0ac;
+  --color-ctp-peach: #fab387;
+  --color-ctp-yellow: #f9e2af;
+  --color-ctp-green: #a6e3a1;
+  --color-ctp-teal: #94e2d5;
+  --color-ctp-sky: #89dceb;
+  --color-ctp-sapphire: #74c7ec;
+  --color-ctp-blue: #89b4fa;
+  --color-ctp-lavender: #b4befe;
+
+  /* Catppuccin Base colors */
+  --color-ctp-text: #cdd6f4;
+  --color-ctp-subtext1: #bac2de;
+  --color-ctp-subtext0: #a6adc8;
+  --color-ctp-overlay2: #9399b2;
+  --color-ctp-overlay1: #7f849c;
+  --color-ctp-overlay0: #6c7086;
+  --color-ctp-surface2: #585b70;
+  --color-ctp-surface1: #45475a;
+  --color-ctp-surface0: #313244;
+  --color-ctp-base: #1e1e2e;
+  --color-ctp-mantle: #181825;
+  --color-ctp-crust: #11111b;
 }
 
 :root {
@@ -120,5 +150,20 @@
     font-family: var(--font-source-code-pro), ui-sans-serif, system-ui,
       -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
       "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  }
+}
+
+/* Catppuccin Custom Shadows */
+@layer utilities {
+  .shadow-ctp-mauve {
+    box-shadow: 0 4px 14px 0 rgba(203, 166, 247, 0.15);
+  }
+
+  .shadow-ctp-blue {
+    box-shadow: 0 4px 14px 0 rgba(137, 180, 250, 0.15);
+  }
+
+  .shadow-ctp-pink {
+    box-shadow: 0 4px 14px 0 rgba(245, 194, 231, 0.15);
   }
 }
